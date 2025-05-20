@@ -1,50 +1,93 @@
-# TencentOS Socks5 一键安装脚本
+# TencentOS Server 4 SOCKS5 一键安装脚本
 
-这是一个用于在TencentOS Server 4上快速部署Socks5代理服务器的脚本。
+这是一个用于在 TencentOS Server 4 上快速部署 SOCKS5 代理服务器的脚本。脚本使用 V2Ray 作为后端，提供安全、稳定的代理服务。
 
 ## 功能特点
 
-- 自动安装V2Ray
-- 自动配置Socks5代理
-- 随机生成安全的端口和认证信息
-- 自动设置服务保活
-- 支持系统服务管理
-
-## 使用方法
-
-1. 下载安装脚本：
-```bash
-curl -L -o install_socks5.sh https://raw.githubusercontent.com/你的用户名/仓库名/main/install_socks5.sh
-```
-
-2. 添加执行权限：
-```bash
-chmod +x install_socks5.sh
-```
-
-3. 运行安装脚本：
-```bash
-sudo ./install_socks5.sh
-```
-
-## 安装完成后
-
-安装完成后，脚本会显示以下信息：
-- 代理服务器地址
-- 端口号
-- 用户名
-- 密码
-
-请妥善保存这些信息，它们将用于配置客户端。
+- 一键安装和配置
+- 支持手动输入或随机生成账号密码
+- 完整的服务管理功能
+- 安全的凭据存储
+- 支持修改配置
+- 支持查看运行状态
 
 ## 系统要求
 
 - TencentOS Server 4
-- Root权限
+- root 权限
 - 网络连接
+
+## 安装方法
+
+1. 下载安装脚本：
+```bash
+wget https://raw.githubusercontent.com/tianuc/tencentos-socks5-installer/main/install.sh
+```
+
+2. 添加执行权限：
+```bash
+chmod +x install.sh
+```
+
+3. 运行安装脚本：
+```bash
+./install.sh
+```
+
+## 使用说明
+
+### 安装/配置选项
+
+运行脚本后，您将看到以下选项：
+
+1. 安装/重装 V2Ray
+   - 手动输入配置：可以自定义端口、用户名和密码
+   - 随机生成配置：自动生成随机用户名和密码
+
+2. 启动 V2Ray
+3. 停止 V2Ray
+4. 重启 V2Ray
+5. 查看状态
+6. 修改配置
+   - 修改端口
+   - 修改用户名和密码（支持随机生成）
+7. 卸载 V2Ray
+
+### 配置说明
+
+- 端口：默认 23000，可在安装时修改
+- 协议：SOCKS5
+- 认证方式：用户名密码认证
+- 配置文件位置：/etc/v2ray/config.json
+- 凭据文件位置：/etc/v2ray/credentials.txt（权限 600）
+
+### 安全特性
+
+- 无硬编码凭据
+- 凭据保存在加密文件中
+- 支持随机生成强密码
+- 配置文件权限控制
+
+## 常见问题
+
+1. 如何修改配置？
+   - 运行脚本，选择选项 6 进行修改
+   - 可以修改端口、用户名和密码
+
+2. 如何查看当前配置？
+   - 运行脚本，选择选项 5 查看状态
+   - 或直接查看 /etc/v2ray/credentials.txt
+
+3. 如何卸载？
+   - 运行脚本，选择选项 7 进行卸载
 
 ## 注意事项
 
+- 请妥善保管您的凭据信息
+- 建议定期更换密码
+- 建议使用随机生成的强密码
 - 请确保服务器防火墙已开放相应端口
-- 建议定期更换端口和认证信息以提高安全性
-- 如遇到问题，请查看日志文件：`/var/log/v2ray/error.log` 
+
+## 许可证
+
+MIT License 
