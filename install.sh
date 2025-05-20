@@ -8,7 +8,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # 配置文件路径
-CONFIG_FILE="/etc/v2ray/config.json"
+CONFIG_FILE="/usr/local/etc/v2ray/config.json"
 SERVICE_FILE="/etc/systemd/system/v2ray.service"
 
 # 生成随机字符串
@@ -52,7 +52,7 @@ configure_v2ray() {
     local password=$3
     
     echo -e "${BLUE}正在配置V2Ray...${NC}"
-    mkdir -p /etc/v2ray
+    mkdir -p /usr/local/etc/v2ray
     
     cat > $CONFIG_FILE << EOF
 {
@@ -185,7 +185,7 @@ uninstall_v2ray() {
         systemctl stop v2ray
         systemctl disable v2ray
         rm -rf /usr/local/bin/v2ray
-        rm -rf /etc/v2ray
+        rm -rf /usr/local/etc/v2ray
         rm -f $SERVICE_FILE
         systemctl daemon-reload
         echo -e "${GREEN}V2Ray已完全卸载${NC}"
